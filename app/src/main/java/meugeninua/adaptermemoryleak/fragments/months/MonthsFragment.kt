@@ -10,14 +10,19 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_months.*
 import meugeninua.adaptermemoryleak.R
 import meugeninua.adaptermemoryleak.fragments.months.MonthsFragmentDirections.Companion.navToDetails
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MonthsFragment: Fragment() {
 
     private val viewModel: MonthsViewModel by viewModels()
-    private var adapter: MonthsAdapter? = null
+
+    @Inject
+    lateinit var adapter: MonthsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,8 +38,7 @@ class MonthsFragment: Fragment() {
         val context = requireContext()
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        adapter = MonthsAdapter(context)
-        adapter?.setListener {
+        adapter.setListener {
             findNavController().navigate(navToDetails(it))
         }
         recycler.adapter = adapter
@@ -43,13 +47,12 @@ class MonthsFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.monthsData.observe(viewLifecycleOwner, Observer {
-            adapter?.submitMonths(it)
+            adapter.submitMonths(it)
         })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // TODO To fix memory leak uncomment next line
-//        recycler.adapter = null
+        recycler.adapter = null
     }
 }

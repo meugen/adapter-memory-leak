@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.android.synthetic.main.item_month.view.*
 import meugeninua.adaptermemoryleak.R
+import javax.inject.Inject
 
-class MonthsAdapter(context: Context): RecyclerView.Adapter<MonthsAdapter.MonthHolder>() {
+class MonthsAdapter @Inject constructor(
+    @ActivityContext context: Context
+): RecyclerView.Adapter<MonthsAdapter.MonthHolder>() {
 
     private val inflater = LayoutInflater.from(context)
     private var items = emptyList<String>()
