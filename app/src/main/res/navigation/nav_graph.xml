@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/monthsFragment"
-        android:name="meugeninua.adaptermemoryleak.fragments.months.MonthsFragment"
+        android:name="meugeninua.adaptermemoryleak.ui.fragments.months.MonthsFragment"
         android:label="MonthsFragment"
         tools:layout="@layout/fragment_months">
 
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/monthDetailsFragment"
-        android:name="meugeninua.adaptermemoryleak.fragments.details.MonthDetailsFragment"
+        android:name="meugeninua.adaptermemoryleak.ui.fragments.details.MonthDetailsFragment"
         android:label="MonthDetailsFragment"
         tools:layout="@layout/fragment_month_details">
 
