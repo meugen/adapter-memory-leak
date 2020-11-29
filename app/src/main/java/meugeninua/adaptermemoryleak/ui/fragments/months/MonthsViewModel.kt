@@ -8,11 +8,10 @@ import meugeninua.adaptermemoryleak.ui.common.LiveEventConfigurer
 import meugeninua.adaptermemoryleak.ui.common.OnStartStopListener
 import meugeninua.adaptermemoryleak.ui.fragments.months.actions.MonthDetailsAction
 import meugeninua.adaptermemoryleak.ui.fragments.months.actions.MonthsAction
+import meugeninua.adaptermemoryleak.ui.fragments.months.binding.MonthsBindingsListener
 
-interface IMonthsViewModel: OnStartStopListener {
+interface IMonthsViewModel: OnStartStopListener, MonthsBindingsListener {
     val liveEvent: LiveData<Any>
-
-    fun onMonthClick(month: String)
 }
 
 class MonthsViewModel: ViewModel(), IMonthsViewModel {

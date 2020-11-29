@@ -1,6 +1,5 @@
 package meugeninua.adaptermemoryleak.ui.fragments.months
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,24 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import meugeninua.adaptermemoryleak.R
-import meugeninua.adaptermemoryleak.app.App
+import meugeninua.adaptermemoryleak.app.inject
 import meugeninua.adaptermemoryleak.ui.common.Binding
 import meugeninua.adaptermemoryleak.ui.common.BindingAction
 import meugeninua.adaptermemoryleak.ui.common.NavControllerAction
 import meugeninua.adaptermemoryleak.ui.common.bindToLifecycle
-import meugeninua.adaptermemoryleak.ui.fragments.months.binding.MonthsBindingsListener
 import meugeninua.adaptermemoryleak.ui.fragments.months.binding.setupMonths
 import javax.inject.Inject
 
-class MonthsFragment: Fragment(), MonthsBindingsListener {
+class MonthsFragment: Fragment() {
 
     @Inject
     lateinit var viewModel: IMonthsViewModel
     private val binding = Binding()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        App.injector(context).inject(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireContext().inject(this)
     }
 
     override fun onCreateView(
@@ -39,12 +37,8 @@ class MonthsFragment: Fragment(), MonthsBindingsListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.attachViews(viewLifecycleOwner, view)
-        binding.setupMonths(this)
+        binding.setupMonths(viewModel)
         viewModel.bindToLifecycle(viewLifecycleOwner)
-    }
-
-    override fun onMonthClick(month: String) {
-        viewModel.onMonthClick(month)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

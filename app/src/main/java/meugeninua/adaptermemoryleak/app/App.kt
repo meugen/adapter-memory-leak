@@ -28,3 +28,7 @@ class App: Application(), HasAndroidInjector {
         fun injector(context: Context) = (context.applicationContext as App).androidInjector()
     }
 }
+
+fun Context.inject(component: Any) {
+    App.injector(this).inject(component)
+}

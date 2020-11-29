@@ -1,7 +1,6 @@
 package meugeninua.adaptermemoryleak.app.di.fragments.months
 
 import androidx.lifecycle.ViewModelProvider
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -17,16 +16,10 @@ interface MonthsFragmentComponent {
 }
 
 @Module
-abstract class MonthsFragmentModule {
+class MonthsFragmentModule {
 
-    @Binds
-    abstract fun bindsViewModel(viewModel: MonthsViewModel): IMonthsViewModel
-
-    companion object {
-
-        @Provides
-        fun viewModel(fragment: MonthsFragment): MonthsViewModel {
-            return ViewModelProvider(fragment).get(MonthsViewModel::class.java)
-        }
+    @Provides
+    fun viewModel(fragment: MonthsFragment): IMonthsViewModel {
+        return ViewModelProvider(fragment).get(MonthsViewModel::class.java)
     }
 }
