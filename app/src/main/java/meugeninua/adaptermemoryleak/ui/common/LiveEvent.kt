@@ -15,7 +15,7 @@ class LiveEvent<T>: MediatorLiveData<T>() {
     @MainThread
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (hasActiveObservers()) {
-            Log.w("SingleLiveEvent", "Multiple observers registered but only one will be notified of changes.")
+            error("Only one observer may be registered for LiveEvent at a time")
         }
 
         super.observe(owner, Observer {
