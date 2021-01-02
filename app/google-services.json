@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "673246835916",
+    "project_id": "adapter-memory-leak",
+    "storage_bucket": "adapter-memory-leak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673246835916:android:1e6df344996f670ae1be69",
+        "android_client_info": {
+          "package_name": "meugeninua.adaptermemoryleak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673246835916-7lu8gpkoa75t5e1uvlpjcsv920adiveo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_NCZ2GBvzS9hDdWOLb6ONfuW5SyzJIFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673246835916-7lu8gpkoa75t5e1uvlpjcsv920adiveo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

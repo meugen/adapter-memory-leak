@@ -1,24 +1,50 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "meugeninua.adaptermemoryleak"
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 16
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore.jks')
+            storePassword 'welc0me'
+            keyAlias 'adapter'
+            keyPassword 'welc0me'
+        }
         release {
+            storeFile file('debug.keystore.jks')
+            storePassword 'welc0me'
+            keyAlias 'adapter'
+            keyPassword 'welc0me'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+        release {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,21 +62,25 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
+
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
 
-    implementation 'com.google.dagger:dagger:2.29'
-    kapt 'com.google.dagger:dagger-compiler:2.29'
-    implementation 'com.google.dagger:dagger-android-support:2.29'
-    kapt 'com.google.dagger:dagger-android-processor:2.29'
+    implementation 'com.google.dagger:dagger:2.30.1'
+    kapt 'com.google.dagger:dagger-compiler:2.30.1'
+    implementation 'com.google.dagger:dagger-android-support:2.30.1'
+    kapt 'com.google.dagger:dagger-android-processor:2.30.1'
 
     implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
