@@ -20,7 +20,7 @@ class MonthsViewModel: ViewModel(), IMonthsViewModel {
     private val monthsData = MutableLiveData(listOf(
         "January", "February", "March", "May",
         "June", "July", "August", "September",
-        "October", "November", "December2"))
+        "October", "November", "December"))
     private val configurer: LiveEventConfigurer
 
     init {
