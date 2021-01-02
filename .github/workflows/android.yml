@@ -14,7 +14,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Decrypt keystore
+        run: ./decrypt_keystore.sh
+        env:
+          KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
+          PROPERTIES_PASSPHRASE: ${{ secrets.PROPERTIES_PASSPHRASE }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Assemble and upload with Gradle
+        run: ./gradlew app:assembleRelease app:appDistributionUploadRelease
