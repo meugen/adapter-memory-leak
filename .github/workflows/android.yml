@@ -19,6 +19,7 @@ jobs:
         env:
           KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
           PROPERTIES_PASSPHRASE: ${{ secrets.PROPERTIES_PASSPHRASE }}
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       - name: Assemble and upload with Gradle
         run: ./gradlew app:assembleRelease app:appDistributionUploadRelease
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
