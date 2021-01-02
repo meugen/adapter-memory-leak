@@ -19,6 +19,10 @@ jobs:
         env:
           KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
           PROPERTIES_PASSPHRASE: ${{ secrets.PROPERTIES_PASSPHRASE }}
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Assemble and upload with Gradle
         run: ./gradlew app:assembleRelease app:appDistributionUploadRelease
         env:

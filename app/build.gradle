@@ -8,6 +8,8 @@ apply plugin: 'com.google.firebase.appdistribution'
 def keystore = new Properties()
 file("../keystore/keystore.properties").withInputStream {keystore.load(it) }
 
+def build_number = System.getenv("BUILD_NUMBER") ?: "1"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -16,7 +18,7 @@ android {
         applicationId "meugeninua.adaptermemoryleak"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
+        versionCode Integer.parseInt("$build_number")
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
