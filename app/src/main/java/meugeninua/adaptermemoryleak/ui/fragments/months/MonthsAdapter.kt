@@ -1,11 +1,11 @@
-package meugeninua.adaptermemoryleak.fragments.months
+package meugeninua.adaptermemoryleak.ui.fragments.months
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_month.view.*
 import meugeninua.adaptermemoryleak.R
 
 class MonthsAdapter(context: Context): RecyclerView.Adapter<MonthsAdapter.MonthHolder>() {
@@ -36,7 +36,7 @@ class MonthsAdapter(context: Context): RecyclerView.Adapter<MonthsAdapter.MonthH
 
     inner class MonthHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val monthView = view.month
+        private val monthView = view.findViewById<TextView>(R.id.month)
         private var month: String? = null
 
         init {
